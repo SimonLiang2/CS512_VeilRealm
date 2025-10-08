@@ -94,4 +94,6 @@ Tasks we committed to for **Sprint 1**:
   
 ## Burndown Chart
 
+![Project Burndown Chart](project_burndown_chart.png)
+
 ## Sprint Retrospective
