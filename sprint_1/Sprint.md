@@ -85,7 +85,7 @@ Tasks we committed to for **Sprint 1**:
 - [x] Basic Stratego Rules
 - [x] Create Unity project
 - [x] Starting screen with options for Singleplayer, Multiplayer, etc
-- [ ] Create placeholder game pieces (visuals only) (in-progress)
+- [x] Create placeholder game pieces (visuals only)
 - [x] Some sound effects for the game
 - [x] Set up 10x10 board in Unity
 - [ ] Start defining basic player input structure (in-progress)
