@@ -90,6 +90,8 @@ Tasks we committed to for **Sprint 1**:
 - [x] Set up 10x10 board in Unity
 - [ ] Start defining basic player input structure (in-progress)
 
+![Project Burndown Chart](project_burndown_chart.png)
+
 ## Sprint Retrospective
 ### What Went Well
 All team members installed the same Unity version where regardless of security warning issues, we avoid any compatibility issues.
