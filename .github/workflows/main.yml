@@ -17,16 +17,18 @@ jobs:
           PR_URL="${{ github.event.pull_request.html_url }}"
           PR_USER="${{ github.event.pull_request.user.login }}"
           PR_HEAD="${{ github.event.pull_request.head.ref }}"
+          PR_HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
           PR_BASE="${{ github.event.pull_request.base.ref }}"
-          REPO="${{ github.repository }}"
+          PR_BASE_REPO="${{ github.event.pull_request.base.repo.full_name }}"
 
-          MESSAGE="Pull Request by ${PR_USER}\n"
-          MESSAGE+="Branch: ${PR_HEAD} → ${REPO}:${PR_BASE}\n"
-          MESSAGE+="Title: ${PR_TITLE}\n"
-          MESSAGE+="Link: ${PR_URL}"
+          # Create multiline message
+          MESSAGE=$(printf "Pull Request by %s\nBranch: %s:%s → %s:%s\nTitle: %s\nLink: %s" \
+            "$PR_USER" "$PR_HEAD_REPO" "$PR_HEAD" "$PR_BASE_REPO" "$PR_BASE" "$PR_TITLE" "$PR_URL")
 
+          # Create JSON payload
           JSON_PAYLOAD=$(jq -n --arg content "$MESSAGE" '{content: $content}')
 
+          # Send to Discord
           curl -H "Content-Type: application/json" \
                -X POST "$DISCORD_WEBHOOK" \
                -d "$JSON_PAYLOAD"
