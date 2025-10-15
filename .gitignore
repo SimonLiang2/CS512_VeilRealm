@@ -65,7 +65,3 @@ crashlytics-build.properties
 # =================== #
 # END Unity.gitignore #
 # =================== #
-
-.gemini/
-gha-creds-*.json
-
