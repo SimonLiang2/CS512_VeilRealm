@@ -2,7 +2,7 @@ name: Notify Discord on PR events
 
 on:
   pull_request:
-    types: [opened, reopened, edited]  # or whatever PR events you want
+    types: [opened, reopened, edited]
 
 jobs:
   notify:
@@ -12,21 +12,21 @@ jobs:
       - name: Send Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          # you can also set avatar, username etc if you want
         run: |
-          # gather data from github context
           PR_TITLE="${{ github.event.pull_request.title }}"
           PR_URL="${{ github.event.pull_request.html_url }}"
           PR_USER="${{ github.event.pull_request.user.login }}"
+          PR_HEAD="${{ github.event.pull_request.head.ref }}"
+          PR_BASE="${{ github.event.pull_request.base.ref }}"
           REPO="${{ github.repository }}"
-          
-          # customize the message payload (simple version)
-          JSON_PAYLOAD=$(jq -n \
-            --arg content "New PR by **$PR_USER**: \"$PR_TITLE\" in $REPO" \
-            --arg url "$PR_URL" \
-            '{content: ($content + "\n" + $url)}')
 
-          # send to discord
+          MESSAGE="Pull Request by ${PR_USER}\n"
+          MESSAGE+="Branch: ${PR_HEAD} → ${REPO}:${PR_BASE}\n"
+          MESSAGE+="Title: ${PR_TITLE}\n"
+          MESSAGE+="Link: ${PR_URL}"
+
+          JSON_PAYLOAD=$(jq -n --arg content "$MESSAGE" '{content: $content}')
+
           curl -H "Content-Type: application/json" \
                -X POST "$DISCORD_WEBHOOK" \
                -d "$JSON_PAYLOAD"
