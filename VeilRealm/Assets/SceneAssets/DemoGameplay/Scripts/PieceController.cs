@@ -10,6 +10,34 @@ public class ControlScheme
     public KeyCode right = KeyCode.RightArrow;
 }
 
+[System.Serializable]
+public enum PieceClass
+{
+    MARSHAL = 10, // 1
+    GENERAL = 9, // 1
+    COLONEL = 8, // 2
+    MAJOR = 7, // 3
+    CAPTAIN = 6, // 4
+    LIEUTENANT = 5, // 4
+    SERGEANT = 4, // 4
+    MINER = 3, // 5
+    SCOUT = 2, // 8
+
+    SPY = 1, // 1
+
+    /* Extras */
+    BOMB = 100, // 6
+    FLAG = 1000, // 1
+
+    /* 40 pieces per board */
+}
+
+public enum Team
+{
+    RED,
+    BLUE
+}
+
 public class PieceController : MonoBehaviour
 {
     [SerializeField] private BoardManager boardManager;
@@ -21,6 +49,8 @@ public class PieceController : MonoBehaviour
 
     [Header("Control Scheme")]
     [SerializeField] private ControlScheme controls;
+    [SerializeField] public PieceClass pieceClass = PieceClass.SCOUT;
+    [SerializeField] public Team team = Team.RED; 
 
     private bool isSelected = false;
     private readonly List<GameObject> activeHighlights = new List<GameObject>();
@@ -30,8 +60,21 @@ public class PieceController : MonoBehaviour
         boardManager.RegisterPiece(this, x, y);
     }
 
+    bool doIMove()
+    {
+        if (pieceClass == PieceClass.BOMB || pieceClass == PieceClass.FLAG)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     void Update()
     {
+        if (!doIMove()) { return; }
         if (Input.GetKeyDown(controls.up))
         {
             if (boardManager.TryMovePiece(this, x, y, x, y + 1))
@@ -75,6 +118,7 @@ public class PieceController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!doIMove()) { return; }
         if (isSelected)
         {
             isSelected = false;
@@ -91,18 +135,41 @@ public class PieceController : MonoBehaviour
     {
         ClearHighlights();
 
-        var moves = boardManager.GetPossibleMoves(x, y);
-        foreach (var m in moves)
+        var moves = boardManager.GetPossibleMoves(x, y, team);
+
+        /* Free squares */
+        foreach (var m in moves.freeSquares)
         {
             Vector3 worldPos = transform.position + new Vector3((m.x - x) * moveVal, (m.y - y) * moveVal, 0f);
             var hl = Instantiate(spotlight, worldPos, Quaternion.identity);
             activeHighlights.Add(hl);
 
+            var sr = hl.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.color = Color.yellow;
+
             var marker = hl.GetComponent<SpotlightTarget>();
             if (marker == null) marker = hl.AddComponent<SpotlightTarget>();
             marker.Init(this, m);
         }
+
+        /* Enemy Squares */
+        foreach (var m in moves.enemySquares)
+        {
+            Vector3 worldPos = transform.position + new Vector3((m.x - x) * moveVal, (m.y - y) * moveVal, 0f);
+            var hl = Instantiate(spotlight, worldPos, Quaternion.identity);
+            activeHighlights.Add(hl);
+
+            var sr = hl.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.color = Color.red;
+
+            var marker = hl.GetComponent<SpotlightTarget>();
+            if (marker == null) marker = hl.AddComponent<SpotlightTarget>();
+            marker.Init(this, m); 
+        }
     }
+
 
     private void ClearHighlights()
     {
@@ -115,6 +182,38 @@ public class PieceController : MonoBehaviour
 
     public void OnSpotlightClicked(Vector2Int target)
     {
+        var targetObj = boardManager.GetPieceAt(target.x, target.y);
+        if (targetObj != null)
+        {
+            var targetPiece = targetObj.GetComponent<PieceController>();
+            if (targetPiece != null && targetPiece.team != team)
+            {
+                // ATTACK
+                if (boardManager.AttackPiece(this, x, y, target.x, target.y))
+                {
+                    // Move if attacker survives
+                    //if (gameObject != null) // check because attacker might be destroyed
+                    //{
+                        int dx = target.x - x;
+                        int dy = target.y - y;
+
+                        x = target.x;
+                        y = target.y;
+
+                        transform.position = new Vector3(
+                            transform.position.x + dx * moveVal,
+                            transform.position.y + dy * moveVal,
+                            0f
+                        );
+                    //}
+                }
+                ClearHighlights();
+                isSelected = false;
+                return;
+            }
+        }
+
+        // NORMAL MOVE
         if (boardManager.TryMovePiece(this, x, y, target.x, target.y))
         {
             int dx = target.x - x;
@@ -133,4 +232,5 @@ public class PieceController : MonoBehaviour
             isSelected = false;
         }
     }
+
 }
