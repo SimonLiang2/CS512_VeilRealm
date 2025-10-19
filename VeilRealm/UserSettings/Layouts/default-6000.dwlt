@@ -20,10 +20,14 @@ MonoBehaviour:
     height: 1495
   m_ShowMode: 4
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Title: Scene
 =======
   m_Title: Project
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+  m_Title: Scene
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -53,10 +57,14 @@ MonoBehaviour:
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 123
 =======
   controlID: 89
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+  controlID: 91
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -377,7 +385,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -464,10 +472,14 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/SceneAssets/DemoGameplay/Scripts
 =======
     - Assets/Scenes
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+    - Assets/Settings/Scenes
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -478,11 +490,15 @@ MonoBehaviour:
   m_StartGridSize: 83
   m_LastFolders:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - Assets/SceneAssets/DemoGameplay/Scripts
   m_LastFoldersGridSize: 83
   m_LastProjectPath: /home/johnny/git/CS512_VeilRealm/VeilRealm
 =======
   - Assets/Scenes
+=======
+  - Assets/Settings/Scenes
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
   m_LastFoldersGridSize: 83
   m_LastProjectPath: C:\Users\samgr\OneDrive\Desktop\VeilRealm\CS512_VeilRealm\VeilRealm
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
@@ -490,6 +506,7 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_SelectedIDs: 6ab60000
     m_LastClickedID: 46698
@@ -499,23 +516,28 @@ MonoBehaviour:
     m_LastClickedID: 65558
     m_ExpandedIDs: 0000000022f5000000ca9a3b
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+    m_SelectedIDs: 80b30000
+    m_LastClickedID: 45952
+    m_ExpandedIDs: 0000000046b1000000ca9a3b
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Assets
+      m_OriginalName: Assets
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 45844
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 5}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1214,6 +1236,7 @@ MonoBehaviour:
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: 888.85394, y: 321.68707, z: 1.3166533}
     speed: 2
     m_Value: {x: 888.85394, y: 321.68707, z: 1.3166533}
@@ -1222,6 +1245,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 1.3261422, y: -1.2288104, z: -0.06582033}
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+    m_Target: {x: 10.814689, y: 2.8508935, z: -0.55689603}
+    speed: 2
+    m_Value: {x: 11.7820015, y: 2.877037, z: -0.52860874}
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1272,6 +1300,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 823.8328
     speed: 2
     m_Value: 823.8328
@@ -1280,6 +1309,11 @@ MonoBehaviour:
     speed: 2
     m_Value: 16.582045
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+    m_Target: 65.6896
+    speed: 2
+    m_Value: 62.860863
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1395,13 +1429,17 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 1cb30000
       m_LastClickedID: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
       m_ExpandedIDs: 0efbffff
 =======
       m_ExpandedIDs: 2a23ffffce27ffff
 >>>>>>> babd50178ad10888b34c86f483cbf926acc9b130
+=======
+      m_ExpandedIDs: f2f5ffff2af7fffffcfaffff
+>>>>>>> 3722e7b7df277b4b1c104fefa3e70b8bf2e209aa
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
