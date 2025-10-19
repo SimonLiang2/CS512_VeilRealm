@@ -45,7 +45,14 @@ public class PieceController : MonoBehaviour
 
     [SerializeField] private int x;
     [SerializeField] private int y;
-    [SerializeField] private float moveVal = 4.65f;
+
+    [Header("Piece Move Values")]
+    [SerializeField] private float pieceMoveValX = 4.65f;
+    [SerializeField] private float pieceMoveValY = 4.65f;
+
+    [Header("Spotlight Move Values")]
+    [SerializeField] private float spotlightMoveValX = 4.65f;
+    [SerializeField] private float spotlightMoveValY = 4.65f;
 
     [Header("Control Scheme")]
     [SerializeField] private ControlScheme controls;
@@ -80,7 +87,7 @@ public class PieceController : MonoBehaviour
             if (boardManager.TryMovePiece(this, x, y, x, y + 1))
             {
                 y += 1;
-                transform.position = new Vector3(transform.position.x, transform.position.y + moveVal, 0);
+                transform.position = new Vector3(transform.position.x, transform.position.y + pieceMoveValY, 0);
                 ClearHighlights();
             }
         }
@@ -90,7 +97,7 @@ public class PieceController : MonoBehaviour
             if (boardManager.TryMovePiece(this, x, y, x, y - 1))
             {
                 y -= 1;
-                transform.position = new Vector3(transform.position.x, transform.position.y - moveVal, 0);
+                transform.position = new Vector3(transform.position.x, transform.position.y - pieceMoveValY, 0);
                 ClearHighlights();
             }
         }
@@ -100,7 +107,7 @@ public class PieceController : MonoBehaviour
             if (boardManager.TryMovePiece(this, x, y, x - 1, y))
             {
                 x -= 1;
-                transform.position = new Vector3(transform.position.x - moveVal, transform.position.y, 0);
+                transform.position = new Vector3(transform.position.x - pieceMoveValX, transform.position.y, 0);
                 ClearHighlights();
             }
         }
@@ -110,7 +117,7 @@ public class PieceController : MonoBehaviour
             if (boardManager.TryMovePiece(this, x, y, x + 1, y))
             {
                 x += 1;
-                transform.position = new Vector3(transform.position.x + moveVal, transform.position.y, 0);
+                transform.position = new Vector3(transform.position.x + pieceMoveValX, transform.position.y, 0);
                 ClearHighlights();
             }
         }
@@ -140,7 +147,7 @@ public class PieceController : MonoBehaviour
         /* Free squares */
         foreach (var m in moves.freeSquares)
         {
-            Vector3 worldPos = transform.position + new Vector3((m.x - x) * moveVal, (m.y - y) * moveVal, 0f);
+            Vector3 worldPos = transform.position + new Vector3((m.x - x) * spotlightMoveValX, (m.y - y) * spotlightMoveValY, 0f);
             var hl = Instantiate(spotlight, worldPos, Quaternion.identity);
             activeHighlights.Add(hl);
 
@@ -156,7 +163,7 @@ public class PieceController : MonoBehaviour
         /* Enemy Squares */
         foreach (var m in moves.enemySquares)
         {
-            Vector3 worldPos = transform.position + new Vector3((m.x - x) * moveVal, (m.y - y) * moveVal, 0f);
+            Vector3 worldPos = transform.position + new Vector3((m.x - x) * spotlightMoveValX, (m.y - y) * spotlightMoveValY, 0f);
             var hl = Instantiate(spotlight, worldPos, Quaternion.identity);
             activeHighlights.Add(hl);
 
@@ -191,21 +198,17 @@ public class PieceController : MonoBehaviour
                 // ATTACK
                 if (boardManager.AttackPiece(this, x, y, target.x, target.y))
                 {
-                    // Move if attacker survives
-                    //if (gameObject != null) // check because attacker might be destroyed
-                    //{
-                        int dx = target.x - x;
-                        int dy = target.y - y;
+                    int dx = target.x - x;
+                    int dy = target.y - y;
 
-                        x = target.x;
-                        y = target.y;
+                    x = target.x;
+                    y = target.y;
 
-                        transform.position = new Vector3(
-                            transform.position.x + dx * moveVal,
-                            transform.position.y + dy * moveVal,
-                            0f
-                        );
-                    //}
+                    transform.position = new Vector3(
+                        transform.position.x + dx * pieceMoveValX,
+                        transform.position.y + dy * pieceMoveValY,
+                        0f
+                    );
                 }
                 ClearHighlights();
                 isSelected = false;
@@ -223,8 +226,8 @@ public class PieceController : MonoBehaviour
             y = target.y;
 
             transform.position = new Vector3(
-                transform.position.x + dx * moveVal,
-                transform.position.y + dy * moveVal,
+                transform.position.x + dx * pieceMoveValX,
+                transform.position.y + dy * pieceMoveValY,
                 0f
             );
 
