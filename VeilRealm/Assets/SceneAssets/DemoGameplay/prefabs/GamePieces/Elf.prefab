@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.429, y: 0.345, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5946654, y: 1.5946654, z: 1.5946654}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.44, y: 0.59}
   m_EdgeRadius: 0
 --- !u!114 &5795764921146496664
 MonoBehaviour:
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardManager: {fileID: 0}
   spotlight: {fileID: 972235099320347109, guid: 78dc45046907e9402a3b4969e047a596, type: 3}
-  x: 0
+  x: 1
   y: 0
   pieceMoveValX: 1
   pieceMoveValY: 1

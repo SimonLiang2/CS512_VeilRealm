@@ -14,6 +14,10 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
+
+    [SerializeField] public bool redMove = true;
+    [SerializeField] public bool blueMove = false;
+
     [Header("Predefined Obstacles")]
     [SerializeField]
     private Vector2Int[] walls =
@@ -99,6 +103,16 @@ public class BoardManager : MonoBehaviour
             enemySquares = new List<Vector2Int>()
         };
 
+        if (team == Team.BLUE && !blueMove)
+        {
+            return result;
+        } 
+
+        if(team == Team.RED && !redMove)
+        {
+            return result;
+        } 
+
         foreach (var d in kFourDirs)
         {
             int nx = x + d.x;
@@ -133,6 +147,24 @@ public class BoardManager : MonoBehaviour
         if (!InBounds(fromX, fromY) || IsWall(fromX, fromY))
             return false;
 
+        if (piece.team == Team.BLUE && !blueMove)
+        {
+            return false;
+        } else if(piece.team == Team.BLUE && blueMove)
+        {
+            blueMove = false;
+            redMove = true;
+        }
+
+        if(piece.team == Team.RED && !redMove)
+        {
+            return false;
+        } else if(piece.team == Team.RED && redMove)
+        {
+            blueMove = true;
+            redMove = false;
+        }
+
         if (grid[fromX, fromY] == null)
             grid[fromX, fromY] = piece.gameObject;
 
@@ -157,6 +189,24 @@ public class BoardManager : MonoBehaviour
     {
         if (!InBounds(toX, toY))
             return false;
+        
+        if (attacker.team == Team.BLUE && !blueMove)
+        {
+            return false;
+        } else if(attacker.team == Team.BLUE && blueMove)
+        {
+            blueMove = false;
+            redMove = true;
+        }
+
+        if(attacker.team == Team.RED && !redMove)
+        {
+            return false;
+        } else if(attacker.team == Team.RED && redMove)
+        {
+            blueMove = true;
+            redMove = false;
+        }
 
         var targetObj = grid[toX, toY];
         if (targetObj == null)

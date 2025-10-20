@@ -16,8 +16,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2560
     y: 38
-    width: 1920
-    height: 1042
+    width: 2560
+    height: 1402
   m_ShowMode: 0
   m_Title: Game
   m_RootView: {fileID: 4}
@@ -65,8 +65,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 1042
+    width: 2560
+    height: 1402
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   m_ActualView: {fileID: 16}
@@ -92,8 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 1042
+    width: 2560
+    height: 1402
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
   vertical: 0
@@ -449,8 +449,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 26
-    width: 1920
-    height: 1016
+    width: 2560
+    height: 1376
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1920, y: 995}
+  m_TargetSize: {x: 2560, y: 1355}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -483,10 +483,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -960
-    m_HBaseRangeMax: 960
-    m_VBaseRangeMin: -497.5
-    m_VBaseRangeMax: 497.5
+    m_HBaseRangeMin: -1280
+    m_HBaseRangeMax: 1280
+    m_VBaseRangeMin: -677.5
+    m_VBaseRangeMax: 677.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -504,23 +504,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1920
-      height: 995
+      width: 2560
+      height: 1355
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 960, y: 497.5}
+    m_Translation: {x: 1280, y: 677.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -960
-      y: -497.5
-      width: 1920
-      height: 995
+      x: -1280
+      y: -677.5
+      width: 2560
+      height: 1355
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1920, y: 1016}
+  m_LastWindowPixelSize: {x: 2560, y: 1376}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -574,7 +574,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/SceneAssets/DemoGameplay/prefabs/GamePieces
+    - Assets/SceneAssets/DemoGameplay/prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -584,16 +584,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 83
   m_LastFolders:
-  - Assets/SceneAssets/DemoGameplay/prefabs/GamePieces
+  - Assets/SceneAssets/DemoGameplay/prefabs
   m_LastFoldersGridSize: 83
   m_LastProjectPath: /home/johnny/git/CS512_VeilRealm/VeilRealm
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 10b90000
-    m_LastClickedID: 47376
-    m_ExpandedIDs: 00000000d6b60000
+    m_SelectedIDs: 14b90000
+    m_LastClickedID: 47380
+    m_ExpandedIDs: 00000000fcb60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -622,7 +622,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d6b60000
+    m_ExpandedIDs: 00000000fcb60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1294,9 +1294,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 5.686823, y: 0.56072354, z: 0.05204063}
+    m_Target: {x: 5.858074, y: 0.41166955, z: 0.070232786}
     speed: 2
-    m_Value: {x: 5.686823, y: 0.56072354, z: 0.05204063}
+    m_Value: {x: 5.858074, y: 0.41166955, z: 0.070232786}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1346,9 +1346,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.7959685
+    m_Target: 2.9767542
     speed: 2
-    m_Value: 4.7959685
+    m_Value: 2.9767542
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1459,7 +1459,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0efbffff
+      m_ExpandedIDs: 0efbffffdab20000b8b30000dab40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
