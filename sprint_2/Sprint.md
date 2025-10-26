@@ -122,7 +122,7 @@ Some particular order to the vision of the product
 
 
 ## Burndown Chart
-In the same folder (sprint_2)
+![Burndown Chart CS512 Sprint 2](./Burndown%20Chart%20CS512%20Sprint%202.png)
 
 ## Sprint Retrospective 
 ### What Went Well
