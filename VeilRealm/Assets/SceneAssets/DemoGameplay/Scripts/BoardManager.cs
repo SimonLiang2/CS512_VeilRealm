@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,14 @@ public class BoardManager : MonoBehaviour
 
     [SerializeField] public bool redMove = true;
     [SerializeField] public bool blueMove = false;
+
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private TMPro.TextMeshProUGUI continueText;
+
+    [SerializeField] private float zoomOutZ = -1000f;
+    [SerializeField] private float zoomDuration = 2f;
+    [SerializeField] private Vector3 cameraOriginalPos;
+    private bool waitingForContinue = false;
 
     [Header("Predefined Obstacles")]
     [SerializeField]
@@ -54,6 +63,12 @@ public class BoardManager : MonoBehaviour
                 Debug.LogWarning($"Wall {w} is out of bounds.");
         }
 
+        if (mainCamera != null)
+        cameraOriginalPos = mainCamera.transform.position;
+
+        if (continueText != null)
+            continueText.gameObject.SetActive(false);
+        UpdatePieceVisibility();
     }
 
     private bool InBounds(int x, int y) =>
@@ -74,6 +89,60 @@ public class BoardManager : MonoBehaviour
 
         return true;
     }
+
+    private void UpdatePieceVisibility()
+    {
+        foreach (var pieceObj in grid)
+        {
+            if (pieceObj == null) continue;
+
+            var piece = pieceObj.GetComponent<PieceController>();
+            if (piece == null) continue;
+
+            // Hide the other team’s pieces
+            if (redMove && piece.team == Team.BLUE)
+                piece.HidePiece();
+            else if (blueMove && piece.team == Team.RED)
+                piece.HidePiece();
+            else
+                piece.RevealPiece();
+        }
+    }
+
+
+    private IEnumerator AnimateTurnTransition(string playerName)
+    {
+        waitingForContinue = true;
+        
+        float elapsed = 0f;
+        Vector3 startPos = mainCamera.transform.position;
+        Vector3 targetPos = new Vector3(startPos.x, startPos.y, zoomOutZ);
+
+        while (elapsed < zoomDuration)
+        {
+            elapsed += Time.deltaTime;
+            mainCamera.transform.position = Vector3.Lerp(startPos, targetPos, elapsed / zoomDuration);
+            yield return null;
+        }
+
+        continueText.text = $"{playerName}, press SPACE to continue";
+        continueText.gameObject.SetActive(true);
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
+        continueText.gameObject.SetActive(false);
+
+        elapsed = 0f;
+        while (elapsed < zoomDuration)
+        {
+            elapsed += Time.deltaTime;
+            mainCamera.transform.position = Vector3.Lerp(targetPos, cameraOriginalPos, elapsed / zoomDuration);
+            yield return null;
+        }
+
+        waitingForContinue = false;
+    }
+
 
     private void GetPossibleMovesHelper(int x, int y, List<Vector2Int> results)
     {
@@ -183,6 +252,8 @@ public class BoardManager : MonoBehaviour
         {
             blueMove = false;
             redMove = true;
+            StartCoroutine(AnimateTurnTransition("Red Player"));
+            UpdatePieceVisibility();
         }
 
         if(piece.team == Team.RED && !redMove)
@@ -192,6 +263,8 @@ public class BoardManager : MonoBehaviour
         {
             blueMove = true;
             redMove = false;
+            StartCoroutine(AnimateTurnTransition("Blue Player"));
+            UpdatePieceVisibility();
         }
 
         if (grid[fromX, fromY] == null)
@@ -226,6 +299,8 @@ public class BoardManager : MonoBehaviour
         {
             blueMove = false;
             redMove = true;
+            StartCoroutine(AnimateTurnTransition("Red Player"));
+            UpdatePieceVisibility();
         }
 
         if(attacker.team == Team.RED && !redMove)
@@ -235,6 +310,8 @@ public class BoardManager : MonoBehaviour
         {
             blueMove = true;
             redMove = false;
+            StartCoroutine(AnimateTurnTransition("Blue Player"));
+            UpdatePieceVisibility();
         }
 
         var targetObj = grid[toX, toY];

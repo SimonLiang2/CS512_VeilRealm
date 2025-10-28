@@ -107,6 +107,7 @@ MonoBehaviour:
     right: 275
   pieceClass: 8
   team: 0
+  hiddenSprite: {fileID: -2413806693520163455, guid: bdf5d57d3b77270fb91272acd9d7b34f, type: 3}
 --- !u!212 &3147965355664132373
 SpriteRenderer:
   m_ObjectHideFlags: 0
