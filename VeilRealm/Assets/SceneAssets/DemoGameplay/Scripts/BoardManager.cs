@@ -110,10 +110,10 @@ public class BoardManager : MonoBehaviour
     }
 
 
-    private IEnumerator AnimateTurnTransition(string playerName)
+    private IEnumerator AnimateTurnTransition(string playerName, string attackSummary = null)
     {
         waitingForContinue = true;
-        
+
         float elapsed = 0f;
         Vector3 startPos = mainCamera.transform.position;
         Vector3 targetPos = new Vector3(startPos.x, startPos.y, zoomOutZ);
@@ -124,8 +124,11 @@ public class BoardManager : MonoBehaviour
             mainCamera.transform.position = Vector3.Lerp(startPos, targetPos, elapsed / zoomDuration);
             yield return null;
         }
+        continueText.text = string.Empty;
+        if (!string.IsNullOrEmpty(attackSummary))
+            continueText.text = attackSummary + "\n\n";
 
-        continueText.text = $"{playerName}, press SPACE to continue";
+        continueText.text += $"{playerName}, press SPACE to continue";
         continueText.gameObject.SetActive(true);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -142,6 +145,7 @@ public class BoardManager : MonoBehaviour
 
         waitingForContinue = false;
     }
+
 
 
     private void GetPossibleMovesHelper(int x, int y, List<Vector2Int> results)
@@ -291,28 +295,11 @@ public class BoardManager : MonoBehaviour
     {
         if (!InBounds(toX, toY))
             return false;
-        
-        if (attacker.team == Team.BLUE && !blueMove)
-        {
-            return false;
-        } else if(attacker.team == Team.BLUE && blueMove)
-        {
-            blueMove = false;
-            redMove = true;
-            StartCoroutine(AnimateTurnTransition("Red Player"));
-            UpdatePieceVisibility();
-        }
 
-        if(attacker.team == Team.RED && !redMove)
-        {
+        if (attacker.team == Team.BLUE && !blueMove)
             return false;
-        } else if(attacker.team == Team.RED && redMove)
-        {
-            blueMove = true;
-            redMove = false;
-            StartCoroutine(AnimateTurnTransition("Blue Player"));
-            UpdatePieceVisibility();
-        }
+        if (attacker.team == Team.RED && !redMove)
+            return false;
 
         var targetObj = grid[toX, toY];
         if (targetObj == null)
@@ -325,12 +312,12 @@ public class BoardManager : MonoBehaviour
         bool attackerWins = false;
         bool bothDie = false;
 
-        // Bomb logic
         if (defender.pieceClass == PieceClass.BOMB)
         {
-            attackerWins = (attacker.pieceClass == PieceClass.MINER);
-            if (!attackerWins)
-                bothDie = false; 
+            if (attacker.pieceClass == PieceClass.MINER)
+                attackerWins = true;
+            else
+                attackerWins = false; 
         }
         else if (attacker.pieceClass == PieceClass.SPY && defender.pieceClass == PieceClass.MARSHAL)
         {
@@ -349,13 +336,20 @@ public class BoardManager : MonoBehaviour
                 attackerWins = false;
         }
 
+        string summary = $"The {attacker.team} {attacker.pieceClass} engaged the {defender.team} {defender.pieceClass}!\n";
+
         if (bothDie)
         {
             Destroy(attacker.gameObject);
             Destroy(defender.gameObject);
             grid[fromX, fromY] = null;
             grid[toX, toY] = null;
+
+            string[] phrases = { "Both pieces perished in battle!", "Neither survived the clash!", "A mutual destruction occurred!", "Both warriors fell!" };
+            summary += phrases[Random.Range(0, phrases.Length)];
+
             Debug.Log($"{attacker.name} and {defender.name} both died!");
+            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
 
@@ -364,17 +358,37 @@ public class BoardManager : MonoBehaviour
             Destroy(defender.gameObject);
             grid[toX, toY] = attacker.gameObject;
             grid[fromX, fromY] = null;
+
+            string[] verbs = { "destroyed", "defeated", "obliterated", "demolished", "crushed", "slayed" };
+            string action = verbs[Random.Range(0, verbs.Length)];
+
+            summary += $"The {attacker.team} {attacker.pieceClass} {action} the {defender.team} {defender.pieceClass}!";
+
             Debug.Log($"{attacker.name} defeated {defender.name}!");
+            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
         else
         {
             Destroy(attacker.gameObject);
             grid[fromX, fromY] = null;
+
+            string[] verbs = { "defended bravely against", "repelled", "vanquished", "overpowered", "outsmarted" };
+            string action = verbs[Random.Range(0, verbs.Length)];
+
+            summary += $"The {defender.team} {defender.pieceClass} {action} the {attacker.team} {attacker.pieceClass}!";
+
             Debug.Log($"{defender.name} defeated {attacker.name}!");
+            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
     }
+
+    private string GetNextPlayerName(Team current)
+    {
+        return current == Team.RED ? "Blue Player" : "Red Player";
+    }
+
 
 
     /*
