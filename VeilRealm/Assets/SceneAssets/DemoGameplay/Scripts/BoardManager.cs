@@ -14,6 +14,7 @@ public class BoardManager : MonoBehaviour
     private GameObject[,] grid;
 
     private bool gameOver = false;
+        
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
@@ -28,6 +29,10 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private float zoomDuration = 2f;
     [SerializeField] private Vector3 cameraOriginalPos;
     private bool waitingForContinue = false;
+
+    public AudioClip attackSound;
+    public AudioClip killSound;
+    public AudioClip explosionSound;
 
     [Header("Predefined Obstacles")]
     [SerializeField]
@@ -301,6 +306,11 @@ public class BoardManager : MonoBehaviour
         if (attacker.team == Team.RED && !redMove)
             return false;
 
+        if (AudioManager.Instance != null && attackSound != null)
+        {
+            AudioManager.Instance.PlayOneShot(attackSound);
+        }
+
         var targetObj = grid[toX, toY];
         if (targetObj == null)
             return false;
@@ -317,7 +327,7 @@ public class BoardManager : MonoBehaviour
             if (attacker.pieceClass == PieceClass.MINER)
                 attackerWins = true;
             else
-                attackerWins = false; 
+                attackerWins = false;
         }
         else if (attacker.pieceClass == PieceClass.SPY && defender.pieceClass == PieceClass.MARSHAL)
         {
@@ -334,6 +344,26 @@ public class BoardManager : MonoBehaviour
                 bothDie = true;
             else
                 attackerWins = false;
+        }
+
+        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins = false))
+        {
+            if (AudioManager.Instance != null && explosionSound != null)
+            {
+                AudioManager.Instance.PlayOneShot(explosionSound);
+            }
+        }
+        else
+        {
+            if (AudioManager.Instance != null && attackSound != null)
+            {
+                AudioManager.Instance.PlayOneShot(attackSound);
+            }
+        }
+
+        if (AudioManager.Instance != null && killSound != null)
+        {
+            AudioManager.Instance.PlayOneShot(killSound);
         }
 
         string summary = $"The {attacker.team} {attacker.pieceClass} engaged the {defender.team} {defender.pieceClass}!\n";
