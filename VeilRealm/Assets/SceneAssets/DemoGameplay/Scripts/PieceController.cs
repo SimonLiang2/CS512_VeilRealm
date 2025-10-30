@@ -59,8 +59,43 @@ public class PieceController : MonoBehaviour
     [SerializeField] public PieceClass pieceClass = PieceClass.SCOUT;
     [SerializeField] public Team team = Team.RED; 
 
+    [SerializeField] private Sprite hiddenSprite; // Black circle
+
     private bool isSelected = false;
     private readonly List<GameObject> activeHighlights = new List<GameObject>();
+
+    private SpriteRenderer spriteRenderer;
+    private Sprite originalSprite;
+    private Material originalMaterial;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalSprite = spriteRenderer.sprite;
+            originalMaterial = spriteRenderer.material;
+        }
+    }
+
+    public void HidePiece()
+    {
+        if (spriteRenderer == null) return;
+
+        // If a hidden sprite is assigned, use it
+        if (hiddenSprite != null)
+            spriteRenderer.sprite = hiddenSprite;
+
+    }
+
+    public void RevealPiece()
+    {
+        if (spriteRenderer == null) return;
+
+        // Restore original look
+        spriteRenderer.sprite = originalSprite;
+        spriteRenderer.material = originalMaterial;
+    }
 
     void Start()
     {
