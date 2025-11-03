@@ -13,7 +13,8 @@ public class BoardManager : MonoBehaviour
 {
     private GameObject[,] grid;
 
-    private bool gameOver = false;
+    private bool redWins = false;
+    private bool blueWins = false;
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
@@ -106,6 +107,61 @@ public class BoardManager : MonoBehaviour
                 piece.HidePiece();
             else
                 piece.RevealPiece();
+        }
+    }
+
+    private void CheckForWinCondition()
+    {
+        bool redFlagExists = false;
+        bool blueFlagExists = false;
+        bool redHasMovable = false;
+        bool blueHasMovable = false;
+
+        foreach (var obj in grid)
+        {
+            if (obj == null) continue;
+            var piece = obj.GetComponent<PieceController>();
+            if (piece == null) continue;
+
+            if (piece.team == Team.RED)
+            {
+                if (piece.pieceClass == PieceClass.FLAG)
+                    redFlagExists = true;
+                if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
+                    redHasMovable = true;
+            }
+            else if (piece.team == Team.BLUE)
+            {
+                if (piece.pieceClass == PieceClass.FLAG)
+                    blueFlagExists = true;
+                if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
+                    blueHasMovable = true;
+            }
+        }
+
+        // Check flag capture
+        if (!redFlagExists)
+        {
+            blueWins = true;
+            //Start Transition to Game Over Screen for Blue Victory
+            //Ex. SceneManager.LoadScene("GameOverScene");
+            //Ex. Coroutine
+        }
+        else if (!blueFlagExists)
+        {
+            redWins = true;
+            //Start Transition to Game Over Screen for Red Victory
+        }
+        // Check no-move condition
+        else if (!redHasMovable)
+        {
+            blueWins = true;
+            //Start Transition to Game Over Screen for Blue Victory
+        }
+        else if (!blueHasMovable)
+        {
+            redWins = true;
+            //Start Transition to Game Over Screen for Red Victory
         }
     }
 
@@ -311,8 +367,11 @@ public class BoardManager : MonoBehaviour
 
         bool attackerWins = false;
         bool bothDie = false;
-
-        if (defender.pieceClass == PieceClass.BOMB)
+        if (defender.pieceClass == PieceClass.FLAG)
+        {
+            attackerWins = true;
+        }
+        else if (defender.pieceClass == PieceClass.BOMB)
         {
             if (attacker.pieceClass == PieceClass.MINER)
                 attackerWins = true;
@@ -380,6 +439,7 @@ public class BoardManager : MonoBehaviour
 
             Debug.Log($"{defender.name} defeated {attacker.name}!");
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            CheckForWinCondition();
             return true;
         }
     }
