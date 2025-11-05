@@ -408,6 +408,7 @@ public class BoardManager : MonoBehaviour
             summary += phrases[Random.Range(0, phrases.Length)];
 
             Debug.Log($"{attacker.name} and {defender.name} both died!");
+            CheckForWinCondition();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
@@ -424,6 +425,7 @@ public class BoardManager : MonoBehaviour
             summary += $"The {attacker.team} {attacker.pieceClass} {action} the {defender.team} {defender.pieceClass}!";
 
             Debug.Log($"{attacker.name} defeated {defender.name}!");
+            CheckForWinCondition();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
@@ -438,8 +440,8 @@ public class BoardManager : MonoBehaviour
             summary += $"The {defender.team} {defender.pieceClass} {action} the {attacker.team} {attacker.pieceClass}!";
 
             Debug.Log($"{defender.name} defeated {attacker.name}!");
-            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             CheckForWinCondition();
+            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
     }
