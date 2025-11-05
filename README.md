@@ -27,3 +27,6 @@ CS512 SOFTWARE ENGINEERING PROJECT
 ### Build Project
 1. In Unity Engine select file
 2. Select Build And Run
+
+### Downloads
+[Linux/Debian](VEILREALM_DEBIAN.zip)
