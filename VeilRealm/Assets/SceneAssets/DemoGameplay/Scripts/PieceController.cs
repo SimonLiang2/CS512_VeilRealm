@@ -76,6 +76,8 @@ public class PieceController : MonoBehaviour
             originalSprite = spriteRenderer.sprite;
             originalMaterial = spriteRenderer.material;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void HidePiece()
@@ -160,6 +162,12 @@ public class PieceController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (boardManager.ISGameOver || PauseMenu.GameIsPaused)
+        {
+            Debug.Log("OnMouseDown: gameover or paused");
+            return;
+        }
+
         if (!doIMove()) { return; }
         if (isSelected)
         {

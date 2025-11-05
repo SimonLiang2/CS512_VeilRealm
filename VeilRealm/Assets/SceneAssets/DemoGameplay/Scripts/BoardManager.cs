@@ -13,6 +13,9 @@ public class BoardManager : MonoBehaviour
 {
     private GameObject[,] grid;
 
+    private bool gameOver = false;
+    public bool ISGameOver => gameOver;
+        
     private bool redWins = false;
     private bool blueWins = false;
     [SerializeField] private int gridSizeRows = 10;
@@ -30,8 +33,19 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private Vector3 cameraOriginalPos;
     private bool waitingForContinue = false;
 
+    public AudioClip attackSound;
+    public AudioClip killSound;
+    public AudioClip explosionSound;
+    public AudioClip gameOverSound;
+
+    public GameObject gameOverUI;
+
+    public TMPro.TextMeshProUGUI winnerstats;
+    public TMPro.TextMeshProUGUI loserstats;
+
     [Header("Predefined Obstacles")]
     [SerializeField]
+
     private Vector2Int[] walls =
     {
         new Vector2Int(6, 5),
@@ -354,9 +368,15 @@ public class BoardManager : MonoBehaviour
 
         if (attacker.team == Team.BLUE && !blueMove)
             return false;
+            
         if (attacker.team == Team.RED && !redMove)
             return false;
 
+        if (AudioManager.Instance != null && attackSound != null)
+        {
+            AudioManager.Instance.PlayOneShot(attackSound);
+        }
+        
         var targetObj = grid[toX, toY];
         if (targetObj == null)
             return false;
@@ -367,16 +387,34 @@ public class BoardManager : MonoBehaviour
 
         bool attackerWins = false;
         bool bothDie = false;
+        // if (defender.pieceClass == PieceClass.FLAG)
+        // {
+        //     attackerWins = true;
+        // }
+        // else if (defender.pieceClass == PieceClass.BOMB)
+
         if (defender.pieceClass == PieceClass.FLAG)
         {
-            attackerWins = true;
+            string summary2 = $"The {attacker.team} captured the {defender.team}'s FLAG!\nThe {attacker.team} team wins the game!";
+            Debug.Log(summary2);
+
+            Destroy(defender.gameObject);
+            grid[toX, toY] = attacker.gameObject;
+            grid[fromX, fromY] = null;
+
+            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
+
+            HandleGameOver(attacker.team, defender.team);
+           
+            return true;
         }
-        else if (defender.pieceClass == PieceClass.BOMB)
+
+        if (defender.pieceClass == PieceClass.BOMB)
         {
             if (attacker.pieceClass == PieceClass.MINER)
                 attackerWins = true;
             else
-                attackerWins = false; 
+                attackerWins = false;
         }
         else if (attacker.pieceClass == PieceClass.SPY && defender.pieceClass == PieceClass.MARSHAL)
         {
@@ -393,6 +431,26 @@ public class BoardManager : MonoBehaviour
                 bothDie = true;
             else
                 attackerWins = false;
+        }
+
+        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins = false))
+        {
+            if (AudioManager.Instance != null && explosionSound != null)
+            {
+                AudioManager.Instance.PlayOneShot(explosionSound);
+            }
+        }
+        else
+        {
+            if (AudioManager.Instance != null && attackSound != null)
+            {
+                AudioManager.Instance.PlayOneShot(attackSound);
+            }
+        }
+
+        if (AudioManager.Instance != null && killSound != null)
+        {
+            AudioManager.Instance.PlayOneShot(killSound);
         }
 
         string summary = $"The {attacker.team} {attacker.pieceClass} engaged the {defender.team} {defender.pieceClass}!\n";
@@ -449,7 +507,23 @@ public class BoardManager : MonoBehaviour
         return current == Team.RED ? "Blue Player" : "Red Player";
     }
 
+    void HandleGameOver(Team winner, Team loser)
+    {
+        gameOver = true;
+        zoomDuration = 0;
+        continueText = null;
+        Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
 
+        gameOverUI.SetActive(true);
+        winnerstats.text = winner + " won - took " + " _ " + "pices";
+        loserstats.text = loser + " lost - took "  + " _ " + "pices";
+
+        if (AudioManager.Instance != null && gameOverSound != null)
+        {
+            AudioManager.Instance.PlayOneShot(gameOverSound);
+        }
+
+    }
 
     /*
     void Update()
@@ -458,4 +532,5 @@ public class BoardManager : MonoBehaviour
         Debug.Log(grid[0, 0].GetComponent<PieceController>().pieceClass);
     }
     */
+
 }
