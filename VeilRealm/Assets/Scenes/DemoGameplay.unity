@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 6301131947196875637, guid: 578d3a28f4294d3de971270e79cb38d3, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 6545455279238737144, guid: 578d3a28f4294d3de971270e79cb38d3, type: 3}
       propertyPath: m_Name
       value: Dragon (1)
@@ -695,6 +699,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 7387680141429544672, guid: 72e65e94df00f5480898ce484b4a0783, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1328,6 +1336,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 1850489799568371421, guid: c0202c65a1a1a0c42a4720a65f5ec350, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3914941452114360351, guid: c0202c65a1a1a0c42a4720a65f5ec350, type: 3}
       propertyPath: m_Name
       value: Skeleton (1)
@@ -1615,6 +1627,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 5795764921146496664, guid: b005a5a17323a49de9ad9a2cf6084c2b, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 6758372003510008085, guid: b005a5a17323a49de9ad9a2cf6084c2b, type: 3}
       propertyPath: m_Name
       value: Elf (1)
@@ -3204,6 +3220,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 9086215711512834035, guid: d852586cdfb316f38a8b572c1aa82781, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5961,6 +5981,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 6084643522679931019, guid: 52e13a0cff6e004299c50da1aa836e6c, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6860,6 +6884,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 604500352963190868, guid: 6173427893f2cc151a3d015987b585d9, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3527433424510653309, guid: 6173427893f2cc151a3d015987b585d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.41
@@ -10073,6 +10101,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 8906037068943983786, guid: 8587cfdd834383f17a036bc640bd4d01, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10230,6 +10262,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 446037050426472869, guid: cd44b93e83716bbbab83a6163f05ed84, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3827077774796025155, guid: cd44b93e83716bbbab83a6163f05ed84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.44
@@ -10566,6 +10602,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 1023905006425220996, guid: 109ed46faa428709ebe7b1a17c9b2d20, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3760481048514984853, guid: 109ed46faa428709ebe7b1a17c9b2d20, type: 3}
       propertyPath: m_Name
       value: Knight (1)
@@ -10643,6 +10683,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 5090770715582895032, guid: f9570baaf45217b008795e2f8df3b383, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10834,6 +10878,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 604500352963190868, guid: 6173427893f2cc151a3d015987b585d9, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3527433424510653309, guid: 6173427893f2cc151a3d015987b585d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.381
@@ -10939,6 +10987,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 5090770715582895032, guid: f9570baaf45217b008795e2f8df3b383, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11015,7 +11067,7 @@ PrefabInstance:
     - target: {fileID: 3358335074633677884, guid: 85a6923a6dda2d5fd8a0e2b0ab5023fe, type: 3}
       propertyPath: hiddenSprite
       value: 
-      objectReference: {fileID: -2413806693520163455, guid: bdf5d57d3b77270fb91272acd9d7b34f, type: 3}
+      objectReference: {fileID: 8453098363568892058, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3466899030147534663, guid: 85a6923a6dda2d5fd8a0e2b0ab5023fe, type: 3}
       propertyPath: m_Size.x
       value: 0.5002954
@@ -11089,6 +11141,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 7387680141429544672, guid: 72e65e94df00f5480898ce484b4a0783, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11106,6 +11162,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 1850489799568371421, guid: c0202c65a1a1a0c42a4720a65f5ec350, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3914941452114360351, guid: c0202c65a1a1a0c42a4720a65f5ec350, type: 3}
       propertyPath: m_Name
       value: Skeleton
@@ -11207,6 +11267,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 5795764921146496664, guid: b005a5a17323a49de9ad9a2cf6084c2b, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 6758372003510008085, guid: b005a5a17323a49de9ad9a2cf6084c2b, type: 3}
       propertyPath: m_Name
       value: Elf
@@ -11232,6 +11296,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 4260542614169714120, guid: 32546061637a75d6cbe0b0ae9ba55b75, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 4479795390279260426, guid: 32546061637a75d6cbe0b0ae9ba55b75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.44
@@ -11333,6 +11401,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 9086215711512834035, guid: d852586cdfb316f38a8b572c1aa82781, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11394,6 +11466,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 8906037068943983786, guid: 8587cfdd834383f17a036bc640bd4d01, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11419,6 +11495,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 446037050426472869, guid: cd44b93e83716bbbab83a6163f05ed84, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3827077774796025155, guid: cd44b93e83716bbbab83a6163f05ed84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.47
@@ -11520,6 +11600,10 @@ PrefabInstance:
       propertyPath: boardManager
       value: 
       objectReference: {fileID: 1190746644}
+    - target: {fileID: 1023905006425220996, guid: 109ed46faa428709ebe7b1a17c9b2d20, type: 3}
+      propertyPath: hiddenSprite
+      value: 
+      objectReference: {fileID: 3444410745152355539, guid: 9bb03995006f34083b9b61c89388578c, type: 3}
     - target: {fileID: 3760481048514984853, guid: 109ed46faa428709ebe7b1a17c9b2d20, type: 3}
       propertyPath: m_Name
       value: Knight
