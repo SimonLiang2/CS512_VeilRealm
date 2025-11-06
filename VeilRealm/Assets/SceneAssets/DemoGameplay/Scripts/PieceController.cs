@@ -59,8 +59,6 @@ public class PieceController : MonoBehaviour
     [SerializeField] public PieceClass pieceClass = PieceClass.SCOUT;
     [SerializeField] public Team team = Team.RED; 
 
-    [SerializeField] private Sprite hiddenSprite; // Black circle
-
     private bool isSelected = false;
     private readonly List<GameObject> activeHighlights = new List<GameObject>();
 
@@ -76,27 +74,23 @@ public class PieceController : MonoBehaviour
             originalSprite = spriteRenderer.sprite;
             originalMaterial = spriteRenderer.material;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public void HidePiece()
     {
-        if (spriteRenderer == null) return;
-
-        // If a hidden sprite is assigned, use it
-        if (hiddenSprite != null)
-            spriteRenderer.sprite = hiddenSprite;
-
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 
+    // 🔹 Reveals this piece by enabling all child objects
     public void RevealPiece()
     {
-        if (spriteRenderer == null) return;
-
-        // Restore original look
-        spriteRenderer.sprite = originalSprite;
-        spriteRenderer.material = originalMaterial;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     void Start()

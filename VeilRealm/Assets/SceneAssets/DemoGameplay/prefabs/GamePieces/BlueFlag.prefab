@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.46, y: 9.375076, z: 0}
-  m_LocalScale: {x: 1.6954, y: 1.6954, z: 1.6954}
+  m_LocalScale: {x: 1.2306908, y: 1.2478144, z: 1.6954}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,7 +68,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.027028747, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.29, y: 0.56}
+  m_Size: {x: 0.5002954, y: 0.56}
   m_EdgeRadius: 0
 --- !u!114 &3358335074633677884
 MonoBehaviour:
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardManager: {fileID: 0}
   spotlight: {fileID: 972235099320347109, guid: 78dc45046907e9402a3b4969e047a596, type: 3}
-  x: 9
-  y: 0
+  x: 4
+  y: 2
   pieceMoveValX: 1
   pieceMoveValY: 1
   spotlightMoveValX: 1
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -8593550001092799036, guid: 9015001d05bcf478bb174c958875d3f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
