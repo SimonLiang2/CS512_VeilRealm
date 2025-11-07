@@ -79,12 +79,13 @@ public class BoardManager : MonoBehaviour
         }
 
         if (mainCamera != null)
-        cameraOriginalPos = mainCamera.transform.position;
+            cameraOriginalPos = mainCamera.transform.position;
 
         if (continueText != null)
             continueText.gameObject.SetActive(false);
         UpdatePieceVisibility();
     }
+    
 
     private bool InBounds(int x, int y) =>
         x >= 0 && x < gridSizeCols && y >= 0 && y < gridSizeRows;
@@ -364,6 +365,22 @@ public class BoardManager : MonoBehaviour
         grid[x, y] = piece.gameObject;
     }
 
+    private void ToggleTurnAfterAttack(Team attacker)
+    {
+        if (attacker == Team.RED)
+        {
+            redMove = false;
+            blueMove = true;
+        }
+        else
+        {
+            redMove = true;
+            blueMove = false;
+        }
+
+        UpdatePieceVisibility();
+    }
+
     public bool AttackPiece(PieceController attacker, int fromX, int fromY, int toX, int toY)
     {
         if (!InBounds(toX, toY))
@@ -472,6 +489,7 @@ public class BoardManager : MonoBehaviour
             Debug.Log($"{attacker.name} and {defender.name} both died!");
             CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
 
@@ -489,6 +507,7 @@ public class BoardManager : MonoBehaviour
             Debug.Log($"{attacker.name} defeated {defender.name}!");
             CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
         else
@@ -504,6 +523,7 @@ public class BoardManager : MonoBehaviour
             Debug.Log($"{defender.name} defeated {attacker.name}!");
             CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
     }
