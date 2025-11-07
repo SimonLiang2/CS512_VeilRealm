@@ -437,7 +437,7 @@ public class BoardManager : MonoBehaviour
                 attackerWins = false;
         }
 
-        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins = false))
+        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins == false))
         {
             if (AudioManager.Instance != null && explosionSound != null)
             {
