@@ -124,10 +124,10 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    private void CheckForWinCondition()
+    private void CheckForMovablePieces()
     {
-        bool redFlagExists = false;
-        bool blueFlagExists = false;
+        // bool redFlagExists = false;
+        // bool blueFlagExists = false;
         bool redHasMovable = false;
         bool blueHasMovable = false;
 
@@ -139,43 +139,46 @@ public class BoardManager : MonoBehaviour
 
             if (piece.team == Team.RED)
             {
-                if (piece.pieceClass == PieceClass.FLAG)
-                    redFlagExists = true;
+                // if (piece.pieceClass == PieceClass.FLAG)
+                //     redFlagExists = true;
                 if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
                     redHasMovable = true;
             }
             else if (piece.team == Team.BLUE)
             {
-                if (piece.pieceClass == PieceClass.FLAG)
-                    blueFlagExists = true;
+                // if (piece.pieceClass == PieceClass.FLAG)
+                //     blueFlagExists = true;
                 if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
                     blueHasMovable = true;
             }
         }
 
-        // Check flag capture
-        if (!redFlagExists)
+        // if (!redFlagExists)
+        // {
+        //     blueWins = true;
+        //     HandleGameOver(Team.BLUE, Team.RED, false);
+        // }
+        // else if (!blueFlagExists)
+        // {
+        //     redWins = true;
+        //     HandleGameOver(Team.RED, Team.BLUE, false);
+        // }
+
+        // Check for tie
+        if (!redHasMovable && !blueHasMovable)
         {
-            blueWins = true;
-            //Start Transition to Game Over Screen for Blue Victory
-            //Ex. SceneManager.LoadScene("GameOverScene");
-            //Ex. Coroutine
+            // Draw condition - both players have no moves
+            HandleGameOver(Team.RED, Team.BLUE, true);
         }
-        else if (!blueFlagExists)
-        {
-            redWins = true;
-            //Start Transition to Game Over Screen for Red Victory
-        }
-        // Check no-move condition
         else if (!redHasMovable)
         {
             blueWins = true;
-            //Start Transition to Game Over Screen for Blue Victory
+            HandleGameOver(Team.BLUE, Team.RED, false);
         }
         else if (!blueHasMovable)
         {
             redWins = true;
-            //Start Transition to Game Over Screen for Red Victory
+            HandleGameOver(Team.RED, Team.BLUE, false);
         }
     }
 
@@ -395,6 +398,7 @@ public class BoardManager : MonoBehaviour
 
         if (defender.pieceClass == PieceClass.FLAG)
         {
+
             string summary2 = $"The {attacker.team} captured the {defender.team}'s FLAG!\nThe {attacker.team} team wins the game!";
             Debug.Log(summary2);
 
@@ -404,11 +408,11 @@ public class BoardManager : MonoBehaviour
 
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
 
-            HandleGameOver(attacker.team, defender.team);
-           
+            HandleGameOver(attacker.team, defender.team, false);
+
             return true;
         }
-
+        
         if (defender.pieceClass == PieceClass.BOMB)
         {
             if (attacker.pieceClass == PieceClass.MINER)
@@ -466,7 +470,7 @@ public class BoardManager : MonoBehaviour
             summary += phrases[Random.Range(0, phrases.Length)];
 
             Debug.Log($"{attacker.name} and {defender.name} both died!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
@@ -483,7 +487,7 @@ public class BoardManager : MonoBehaviour
             summary += $"The {attacker.team} {attacker.pieceClass} {action} the {defender.team} {defender.pieceClass}!";
 
             Debug.Log($"{attacker.name} defeated {defender.name}!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
@@ -498,7 +502,7 @@ public class BoardManager : MonoBehaviour
             summary += $"The {defender.team} {defender.pieceClass} {action} the {attacker.team} {attacker.pieceClass}!";
 
             Debug.Log($"{defender.name} defeated {attacker.name}!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
             return true;
         }
@@ -509,16 +513,26 @@ public class BoardManager : MonoBehaviour
         return current == Team.RED ? "Blue Player" : "Red Player";
     }
 
-    void HandleGameOver(Team winner, Team loser)
+    void HandleGameOver(Team winner, Team loser, bool tied)
     {
         gameOver = true;
         zoomDuration = 0;
         continueText = null;
-        Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
+        if (tied)
+        {
+            Debug.Log("Game is a tie!");
+            gameOverUI.SetActive(true);
+            winnerstats.text = "Game is a tie! " + winner + " took " + " _ " + "pieces";
+            loserstats.text = "Game is a tie! " + loser + " took " + " _ " + "pieces";
+        }
+        else
+        {
+            Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
 
-        gameOverUI.SetActive(true);
-        winnerstats.text = winner + " won - took " + " _ " + "pices";
-        loserstats.text = loser + " lost - took "  + " _ " + "pices";
+            gameOverUI.SetActive(true);
+            winnerstats.text = winner + " won - took " + " _ " + "pieces";
+            loserstats.text = loser + " lost - took " + " _ " + "pieces";
+        }
 
         if (AudioManager.Instance != null && gameOverSound != null)
         {
