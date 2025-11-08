@@ -18,6 +18,9 @@ public class BoardManager : MonoBehaviour
         
     private bool redWins = false;
     private bool blueWins = false;
+
+    private int redCaptures = 0;
+    private int blueCaptures = 0;
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
@@ -478,6 +481,8 @@ public class BoardManager : MonoBehaviour
 
         if (bothDie)
         {
+            blueCaptures++;
+            redCaptures++;
             Destroy(attacker.gameObject);
             Destroy(defender.gameObject);
             grid[fromX, fromY] = null;
@@ -495,6 +500,14 @@ public class BoardManager : MonoBehaviour
 
         if (attackerWins)
         {
+            if (attacker.team == Team.RED)
+            {
+                redCaptures++;
+            }
+            else
+            {
+                blueCaptures++;
+            }
             Destroy(defender.gameObject);
             grid[toX, toY] = attacker.gameObject;
             grid[fromX, fromY] = null;
@@ -512,6 +525,14 @@ public class BoardManager : MonoBehaviour
         }
         else
         {
+            if (defender.team == Team.RED)
+            {
+                redCaptures++;
+            }
+            else
+            {
+                blueCaptures++;
+            }
             Destroy(attacker.gameObject);
             grid[fromX, fromY] = null;
 
@@ -542,17 +563,22 @@ public class BoardManager : MonoBehaviour
         {
             Debug.Log("Game is a tie!");
             gameOverUI.SetActive(true);
-            winnerstats.text = "Game is a tie! " + winner + " took " + " _ " + "pieces";
-            loserstats.text = "Game is a tie! " + loser + " took " + " _ " + "pieces";
+            winnerstats.text = "Game is a tie! Red took " + redCaptures + " pieces!";
+            loserstats.text = "Both teams fought valiantly! Blue took " + blueCaptures + " pieces!";
         }
         else
         {
             Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
 
             gameOverUI.SetActive(true);
-            winnerstats.text = winner + " won - took " + " _ " + "pieces";
-            loserstats.text = loser + " lost - took " + " _ " + "pieces";
+            string winnerText = $"{winner} won - captured {(winner == Team.RED ? redCaptures : blueCaptures)} pieces";
+            string loserText = $"{loser} lost - captured {(loser == Team.RED ? redCaptures : blueCaptures)} pieces";
+
+            winnerstats.text = winnerText;
+            loserstats.text = loserText;
         }
+        redCaptures = 0;
+        blueCaptures = 0;
 
         if (AudioManager.Instance != null && gameOverSound != null)
         {
