@@ -18,6 +18,9 @@ public class BoardManager : MonoBehaviour
         
     private bool redWins = false;
     private bool blueWins = false;
+
+    private int redCaptures = 0;
+    private int blueCaptures = 0;
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
@@ -79,12 +82,13 @@ public class BoardManager : MonoBehaviour
         }
 
         if (mainCamera != null)
-        cameraOriginalPos = mainCamera.transform.position;
+            cameraOriginalPos = mainCamera.transform.position;
 
         if (continueText != null)
             continueText.gameObject.SetActive(false);
         UpdatePieceVisibility();
     }
+    
 
     private bool InBounds(int x, int y) =>
         x >= 0 && x < gridSizeCols && y >= 0 && y < gridSizeRows;
@@ -124,10 +128,10 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    private void CheckForWinCondition()
+    private void CheckForMovablePieces()
     {
-        bool redFlagExists = false;
-        bool blueFlagExists = false;
+        // bool redFlagExists = false;
+        // bool blueFlagExists = false;
         bool redHasMovable = false;
         bool blueHasMovable = false;
 
@@ -139,43 +143,46 @@ public class BoardManager : MonoBehaviour
 
             if (piece.team == Team.RED)
             {
-                if (piece.pieceClass == PieceClass.FLAG)
-                    redFlagExists = true;
+                // if (piece.pieceClass == PieceClass.FLAG)
+                //     redFlagExists = true;
                 if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
                     redHasMovable = true;
             }
             else if (piece.team == Team.BLUE)
             {
-                if (piece.pieceClass == PieceClass.FLAG)
-                    blueFlagExists = true;
+                // if (piece.pieceClass == PieceClass.FLAG)
+                //     blueFlagExists = true;
                 if (piece.pieceClass != PieceClass.FLAG && piece.pieceClass != PieceClass.BOMB)
                     blueHasMovable = true;
             }
         }
 
-        // Check flag capture
-        if (!redFlagExists)
+        // if (!redFlagExists)
+        // {
+        //     blueWins = true;
+        //     HandleGameOver(Team.BLUE, Team.RED, false);
+        // }
+        // else if (!blueFlagExists)
+        // {
+        //     redWins = true;
+        //     HandleGameOver(Team.RED, Team.BLUE, false);
+        // }
+
+        // Check for tie
+        if (!redHasMovable && !blueHasMovable)
         {
-            blueWins = true;
-            //Start Transition to Game Over Screen for Blue Victory
-            //Ex. SceneManager.LoadScene("GameOverScene");
-            //Ex. Coroutine
+            // Draw condition - both players have no moves
+            HandleGameOver(Team.RED, Team.BLUE, true);
         }
-        else if (!blueFlagExists)
-        {
-            redWins = true;
-            //Start Transition to Game Over Screen for Red Victory
-        }
-        // Check no-move condition
         else if (!redHasMovable)
         {
             blueWins = true;
-            //Start Transition to Game Over Screen for Blue Victory
+            HandleGameOver(Team.BLUE, Team.RED, false);
         }
         else if (!blueHasMovable)
         {
             redWins = true;
-            //Start Transition to Game Over Screen for Red Victory
+            HandleGameOver(Team.RED, Team.BLUE, false);
         }
     }
 
@@ -361,6 +368,22 @@ public class BoardManager : MonoBehaviour
         grid[x, y] = piece.gameObject;
     }
 
+    private void ToggleTurnAfterAttack(Team attacker)
+    {
+        if (attacker == Team.RED)
+        {
+            redMove = false;
+            blueMove = true;
+        }
+        else
+        {
+            redMove = true;
+            blueMove = false;
+        }
+
+        UpdatePieceVisibility();
+    }
+
     public bool AttackPiece(PieceController attacker, int fromX, int fromY, int toX, int toY)
     {
         if (!InBounds(toX, toY))
@@ -395,6 +418,7 @@ public class BoardManager : MonoBehaviour
 
         if (defender.pieceClass == PieceClass.FLAG)
         {
+
             string summary2 = $"The {attacker.team} captured the {defender.team}'s FLAG!\nThe {attacker.team} team wins the game!";
             Debug.Log(summary2);
 
@@ -404,11 +428,11 @@ public class BoardManager : MonoBehaviour
 
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
 
-            HandleGameOver(attacker.team, defender.team);
-           
+            HandleGameOver(attacker.team, defender.team, false);
+
             return true;
         }
-
+        
         if (defender.pieceClass == PieceClass.BOMB)
         {
             if (attacker.pieceClass == PieceClass.MINER)
@@ -433,7 +457,7 @@ public class BoardManager : MonoBehaviour
                 attackerWins = false;
         }
 
-        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins = false))
+        if ((defender.pieceClass == PieceClass.BOMB) && (attackerWins == false))
         {
             if (AudioManager.Instance != null && explosionSound != null)
             {
@@ -457,6 +481,8 @@ public class BoardManager : MonoBehaviour
 
         if (bothDie)
         {
+            blueCaptures++;
+            redCaptures++;
             Destroy(attacker.gameObject);
             Destroy(defender.gameObject);
             grid[fromX, fromY] = null;
@@ -466,13 +492,22 @@ public class BoardManager : MonoBehaviour
             summary += phrases[Random.Range(0, phrases.Length)];
 
             Debug.Log($"{attacker.name} and {defender.name} both died!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
 
         if (attackerWins)
         {
+            if (attacker.team == Team.RED)
+            {
+                redCaptures++;
+            }
+            else
+            {
+                blueCaptures++;
+            }
             Destroy(defender.gameObject);
             grid[toX, toY] = attacker.gameObject;
             grid[fromX, fromY] = null;
@@ -483,12 +518,21 @@ public class BoardManager : MonoBehaviour
             summary += $"The {attacker.team} {attacker.pieceClass} {action} the {defender.team} {defender.pieceClass}!";
 
             Debug.Log($"{attacker.name} defeated {defender.name}!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
         else
         {
+            if (defender.team == Team.RED)
+            {
+                redCaptures++;
+            }
+            else
+            {
+                blueCaptures++;
+            }
             Destroy(attacker.gameObject);
             grid[fromX, fromY] = null;
 
@@ -498,8 +542,9 @@ public class BoardManager : MonoBehaviour
             summary += $"The {defender.team} {defender.pieceClass} {action} the {attacker.team} {attacker.pieceClass}!";
 
             Debug.Log($"{defender.name} defeated {attacker.name}!");
-            CheckForWinCondition();
+            CheckForMovablePieces();
             StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+            ToggleTurnAfterAttack(attacker.team);
             return true;
         }
     }
@@ -509,16 +554,31 @@ public class BoardManager : MonoBehaviour
         return current == Team.RED ? "Blue Player" : "Red Player";
     }
 
-    void HandleGameOver(Team winner, Team loser)
+    void HandleGameOver(Team winner, Team loser, bool tied)
     {
         gameOver = true;
         zoomDuration = 0;
         continueText = null;
-        Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
+        if (tied)
+        {
+            Debug.Log("Game is a tie!");
+            gameOverUI.SetActive(true);
+            winnerstats.text = "Game is a tie! Red took " + redCaptures + " pieces!";
+            loserstats.text = "Both teams fought valiantly! Blue took " + blueCaptures + " pieces!";
+        }
+        else
+        {
+            Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
 
-        gameOverUI.SetActive(true);
-        winnerstats.text = winner + " won - took " + " _ " + "pices";
-        loserstats.text = loser + " lost - took "  + " _ " + "pices";
+            gameOverUI.SetActive(true);
+            string winnerText = $"{winner} won - captured {(winner == Team.RED ? redCaptures : blueCaptures)} pieces";
+            string loserText = $"{loser} lost - captured {(loser == Team.RED ? redCaptures : blueCaptures)} pieces";
+
+            winnerstats.text = winnerText;
+            loserstats.text = loserText;
+        }
+        redCaptures = 0;
+        blueCaptures = 0;
 
         if (AudioManager.Instance != null && gameOverSound != null)
         {
