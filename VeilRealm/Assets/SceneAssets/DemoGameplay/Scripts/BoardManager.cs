@@ -186,6 +186,11 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    private string GetTeamColor(Team team)
+    {
+        return team == Team.RED ? "#FF4C4C" : "#4CB2FF";
+    }
+
 
     private IEnumerator AnimateTurnTransition(string playerName, string attackSummary = null)
     {
@@ -194,6 +199,9 @@ public class BoardManager : MonoBehaviour
         float elapsed = 0f;
         Vector3 startPos = mainCamera.transform.position;
         Vector3 targetPos = new Vector3(startPos.x, startPos.y, zoomOutZ);
+        RectTransform rect = continueText.GetComponent<RectTransform>();
+        Vector2 clashPos = new Vector2(100, 80);  
+        Vector2 movePos = new Vector2(120, 25); 
 
         while (elapsed < zoomDuration)
         {
@@ -203,9 +211,18 @@ public class BoardManager : MonoBehaviour
         }
         continueText.text = string.Empty;
         if (!string.IsNullOrEmpty(attackSummary))
-            continueText.text = attackSummary + "\n\n";
+        {
+            continueText.text = $"{attackSummary}\n\n";
+            rect.anchoredPosition = clashPos;
+        }
+        else
+        {
+            rect.anchoredPosition = movePos;
+        }
 
-        continueText.text += $"{playerName}, press SPACE to continue";
+        string colorTag = playerName.Contains("Red") ? "#FF4C4C" : "#4CB2FF";
+        continueText.text += $"<b><color={colorTag}>{playerName}</color></b>\nPress <b><color=#00FFFF>SPACE</color></b> to continue";
+
         continueText.gameObject.SetActive(true);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -426,9 +443,11 @@ public class BoardManager : MonoBehaviour
             grid[toX, toY] = attacker.gameObject;
             grid[fromX, fromY] = null;
 
-            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
-
             HandleGameOver(attacker.team, defender.team, false);
+            if (!gameOver)
+            {
+                StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
+            }
 
             return true;
         }
@@ -477,7 +496,13 @@ public class BoardManager : MonoBehaviour
             AudioManager.Instance.PlayOneShot(killSound);
         }
 
-        string summary = $"The {attacker.team} {attacker.pieceClass} engaged the {defender.team} {defender.pieceClass}!\n";
+        string attackerColor = GetTeamColor(attacker.team);
+        string defenderColor = GetTeamColor(defender.team);
+        string actionColor = "#C080FF";
+        string neutralColor = "#A0A0A0";
+
+        string summary = $"The <b><color={attackerColor}>{attacker.team} {attacker.pieceClass}</color></b> " +
+                        $"<color={actionColor}>engaged</color> the <b><color={defenderColor}>{defender.team} {defender.pieceClass}</color></b>!\n";
 
         if (bothDie)
         {
@@ -489,12 +514,15 @@ public class BoardManager : MonoBehaviour
             grid[toX, toY] = null;
 
             string[] phrases = { "Both pieces perished in battle!", "Neither survived the clash!", "A mutual destruction occurred!", "Both warriors fell!" };
-            summary += phrases[Random.Range(0, phrases.Length)];
+            summary += $"<b><color={neutralColor}>{phrases[Random.Range(0, phrases.Length)]}</color></b>";
 
             Debug.Log($"{attacker.name} and {defender.name} both died!");
             CheckForMovablePieces();
-            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
-            ToggleTurnAfterAttack(attacker.team);
+            if (!gameOver)
+            {
+                StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+                ToggleTurnAfterAttack(attacker.team);
+            }
             return true;
         }
 
@@ -515,12 +543,16 @@ public class BoardManager : MonoBehaviour
             string[] verbs = { "destroyed", "defeated", "obliterated", "demolished", "crushed", "slayed" };
             string action = verbs[Random.Range(0, verbs.Length)];
 
-            summary += $"The {attacker.team} {attacker.pieceClass} {action} the {defender.team} {defender.pieceClass}!";
+            summary += $"The <b><color={attackerColor}>{attacker.team} {attacker.pieceClass}</color></b> " +
+                       $"<color={actionColor}>{action}</color> the <b><color={defenderColor}>{defender.team} {defender.pieceClass}</color></b>!";
 
             Debug.Log($"{attacker.name} defeated {defender.name}!");
             CheckForMovablePieces();
-            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
-            ToggleTurnAfterAttack(attacker.team);
+            if (!gameOver)
+            {
+                StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+                ToggleTurnAfterAttack(attacker.team);
+            }
             return true;
         }
         else
@@ -539,12 +571,16 @@ public class BoardManager : MonoBehaviour
             string[] verbs = { "defended bravely against", "repelled", "vanquished", "overpowered", "outsmarted" };
             string action = verbs[Random.Range(0, verbs.Length)];
 
-            summary += $"The {defender.team} {defender.pieceClass} {action} the {attacker.team} {attacker.pieceClass}!";
+            summary += $"The <b><color={defenderColor}>{defender.team} {defender.pieceClass}</color></b> " +
+                       $"<color={actionColor}>{action}</color> the <b><color={attackerColor}>{attacker.team} {attacker.pieceClass}</color></b>!";
 
             Debug.Log($"{defender.name} defeated {attacker.name}!");
             CheckForMovablePieces();
-            StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
-            ToggleTurnAfterAttack(attacker.team);
+            if (!gameOver)
+            {
+                StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary));
+                ToggleTurnAfterAttack(attacker.team);
+            }
             return true;
         }
     }
