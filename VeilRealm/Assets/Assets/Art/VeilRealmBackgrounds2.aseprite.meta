@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 05261adbe3a4e2d4e92a9886c545be44
-=======
 guid: af239d8df3055b47cb39835df075c3ed
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -76,11 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-<<<<<<< HEAD
-    fileImportMode: 1
-=======
     fileImportMode: 0
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -93,11 +85,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-<<<<<<< HEAD
-    fileImportMode: 1
-=======
     fileImportMode: 0
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -110,11 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-<<<<<<< HEAD
-  platformSettingsDirtyTick: 0
-=======
   platformSettingsDirtyTick: 638984888681845430
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -151,11 +135,7 @@ ScriptedImporter:
       y: 4
       width: 480
       height: 270
-<<<<<<< HEAD
-    spriteID: 6d98e1dbecb8eb14c80eda35f57b82b5
-=======
     spriteID: 6b67be16a8f5033bf8cfac69e7a3b686
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,11 +156,7 @@ ScriptedImporter:
       y: 282
       width: 480
       height: 270
-<<<<<<< HEAD
-    spriteID: e613779673b6d89488b78e0aaf4d43d5
-=======
     spriteID: 30faf0257c662f362b6cb12a580a2939
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,11 +177,7 @@ ScriptedImporter:
       y: 560
       width: 480
       height: 270
-<<<<<<< HEAD
-    spriteID: 6f0de03172f2c4d40a6faa25f0169110
-=======
     spriteID: 3427accb34ffefc48b88aa030e09a363
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -226,11 +198,7 @@ ScriptedImporter:
       y: 4
       width: 480
       height: 270
-<<<<<<< HEAD
-    spriteID: 20d52d7505247f048a09df9468a30679
-=======
     spriteID: e04ad89db9c52326da5fbb60ac8d4e4e
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -251,11 +219,7 @@ ScriptedImporter:
       y: 282
       width: 480
       height: 270
-<<<<<<< HEAD
-    spriteID: d2957028d47de504d96c586b87d253bb
-=======
     spriteID: c8dbdf05c85ebd0a7ac72197709d2fbb
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -264,9 +228,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 492, y: 282}
-<<<<<<< HEAD
-  spriteSheetImportData: []
-=======
   spriteSheetImportData:
   - name: VeilRealmBackgrounds2_0
     originalName: 
@@ -373,7 +334,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
   asepriteLayers:
   - layerIndex: 0
     uuid:
@@ -395,11 +355,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 270
-<<<<<<< HEAD
-      spriteId: 6d98e1dbecb8eb14c80eda35f57b82b5
-=======
       spriteId: 6b67be16a8f5033bf8cfac69e7a3b686
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -408,11 +364,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 270
-<<<<<<< HEAD
-      spriteId: e613779673b6d89488b78e0aaf4d43d5
-=======
       spriteId: 30faf0257c662f362b6cb12a580a2939
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -421,11 +373,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 270
-<<<<<<< HEAD
-      spriteId: 6f0de03172f2c4d40a6faa25f0169110
-=======
       spriteId: 3427accb34ffefc48b88aa030e09a363
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -434,11 +382,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 270
-<<<<<<< HEAD
-      spriteId: 20d52d7505247f048a09df9468a30679
-=======
       spriteId: e04ad89db9c52326da5fbb60ac8d4e4e
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -447,11 +391,7 @@ ScriptedImporter:
         y: 0
         width: 480
         height: 270
-<<<<<<< HEAD
-      spriteId: d2957028d47de504d96c586b87d253bb
-=======
       spriteId: c8dbdf05c85ebd0a7ac72197709d2fbb
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -467,8 +407,6 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD
-=======
   - name: DefaultTexturePlatform
     overridden: 0
     ignorePlatformSupport: 0
@@ -493,7 +431,6 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
->>>>>>> 071f5abf85575d28223604e315078e652039f3fb
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
