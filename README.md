@@ -29,4 +29,5 @@ CS512 SOFTWARE ENGINEERING PROJECT
 2. Select Build And Run
 
 ### Downloads
-[Linux/Debian](VEILREALM_DEBIAN.zip)
+[Linux/Debian](VEILREALM_DEBIAN.zip)  
+[Windows](VEILREALM_WINDOWS.zip)
