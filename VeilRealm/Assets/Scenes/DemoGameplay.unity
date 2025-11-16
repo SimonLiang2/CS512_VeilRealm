@@ -6484,6 +6484,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 1585909120}
   winnerstats: {fileID: 1585909119}
   loserstats: {fileID: 1585909118}
+  reasonwin: {fileID: 1493419107}
   walls:
   - {x: 6, y: 5}
   - {x: 6, y: 4}
@@ -7544,6 +7545,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1493419107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8463958187636404801, guid: 32f2517e650be1b40b1fe0c26cee3f05, type: 3}
+  m_PrefabInstance: {fileID: 1585909117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514326474
 GameObject:
   m_ObjectHideFlags: 0
