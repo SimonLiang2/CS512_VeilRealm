@@ -188,8 +188,8 @@ ScriptedImporter:
     uvTransform: {x: 49, y: 79}
   - name: Frame_3
     originalName: 
-    pivot: {x: 0.52941173, y: -0.91071427}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -230,8 +230,8 @@ ScriptedImporter:
     uvTransform: {x: 164, y: 4}
   - name: Frame_5
     originalName: 
-    pivot: {x: 0.43243238, y: -0.65333337}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
