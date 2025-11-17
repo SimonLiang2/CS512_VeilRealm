@@ -106,8 +106,8 @@ MonoBehaviour:
   spotlight: {fileID: 972235099320347109, guid: 78dc45046907e9402a3b4969e047a596, type: 3}
   x: 2
   y: 0
-  pieceMoveValX: 2
-  pieceMoveValY: 0
+  pieceMoveValX: 1
+  pieceMoveValY: 1
   spotlightMoveValX: 1
   spotlightMoveValY: 1
   controls:

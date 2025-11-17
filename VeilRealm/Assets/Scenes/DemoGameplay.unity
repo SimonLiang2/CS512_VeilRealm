@@ -6475,7 +6475,7 @@ MonoBehaviour:
   mainCamera: {fileID: 684010202}
   continueText: {fileID: 2012050149}
   zoomOutZ: -500
-  zoomDuration: 0.5
+  zoomDuration: 0.15
   cameraOriginalPos: {x: 4.6, y: 4.5, z: -10}
   attackSound: {fileID: 8300000, guid: 3f32671b1e5a54e279f7835f5be091cd, type: 3}
   killSound: {fileID: 8300000, guid: 23d76044bbbfa4f0f98c03ef8760611b, type: 3}
