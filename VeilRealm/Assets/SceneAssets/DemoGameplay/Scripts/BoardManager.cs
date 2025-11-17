@@ -45,6 +45,7 @@ public class BoardManager : MonoBehaviour
 
     public TMPro.TextMeshProUGUI winnerstats;
     public TMPro.TextMeshProUGUI loserstats;
+    public TMPro.TextMeshProUGUI reasonwin;
 
     [Header("Predefined Obstacles")]
     [SerializeField]
@@ -172,17 +173,17 @@ public class BoardManager : MonoBehaviour
         if (!redHasMovable && !blueHasMovable)
         {
             // Draw condition - both players have no moves
-            HandleGameOver(Team.RED, Team.BLUE, true);
+            HandleGameOver(Team.RED, Team.BLUE, true, false);
         }
         else if (!redHasMovable)
         {
             blueWins = true;
-            HandleGameOver(Team.BLUE, Team.RED, false);
+            HandleGameOver(Team.BLUE, Team.RED, false, false);
         }
         else if (!blueHasMovable)
         {
             redWins = true;
-            HandleGameOver(Team.RED, Team.BLUE, false);
+            HandleGameOver(Team.RED, Team.BLUE, false, false);
         }
     }
 
@@ -443,7 +444,7 @@ public class BoardManager : MonoBehaviour
             grid[toX, toY] = attacker.gameObject;
             grid[fromX, fromY] = null;
 
-            HandleGameOver(attacker.team, defender.team, false);
+            HandleGameOver(attacker.team, defender.team, false, true);
             if (!gameOver)
             {
                 StartCoroutine(AnimateTurnTransition(GetNextPlayerName(attacker.team), summary2));
@@ -590,25 +591,44 @@ public class BoardManager : MonoBehaviour
         return current == Team.RED ? "Blue Player" : "Red Player";
     }
 
-    void HandleGameOver(Team winner, Team loser, bool tied)
+    void HandleGameOver(Team winner, Team loser, bool tied, bool flagTaken)
     {
         gameOver = true;
         zoomDuration = 0;
         continueText = null;
+        string neutralColor = "#A0A0A0";
         if (tied)
         {
             Debug.Log("Game is a tie!");
             gameOverUI.SetActive(true);
-            winnerstats.text = "Game is a tie! Red took " + redCaptures + " pieces!";
-            loserstats.text = "Both teams fought valiantly! Blue took " + blueCaptures + " pieces!";
+            string redColor = GetTeamColor(Team.RED);
+            string blueColor = GetTeamColor(Team.BLUE);
+
+            winnerstats.text = $"Game is a tie! Red took {redCaptures} pieces!";
+            loserstats.text = $"Both teams fought valiantly! Blue took {blueCaptures} pieces!";
+            string reasonText = $"\n<b><color={neutralColor}>NO MOVABLE PIECES</color></b>";
+            reasonwin.text = reasonText;
         }
         else
         {
             Debug.Log("Winner is: " + winner + "\nLoser is: " + loser);
+            string winnerColor = GetTeamColor(winner);
+            string loserColor = GetTeamColor(loser);
 
             gameOverUI.SetActive(true);
-            string winnerText = $"{winner} won - captured {(winner == Team.RED ? redCaptures : blueCaptures)} pieces";
-            string loserText = $"{loser} lost - captured {(loser == Team.RED ? redCaptures : blueCaptures)} pieces";
+            string winnerText = $"<b>{winner} WON</b> - Captured <color={winnerColor}>{(winner == Team.RED ? redCaptures : blueCaptures)}</color> pieces.";
+            string loserText = $"<b>{loser} LOST</b> - Captured <color={loserColor}>{(loser == Team.RED ? redCaptures : blueCaptures)}</color> pieces.";
+    
+            if (flagTaken)
+            {
+                string reasonText = $"\n<b>{loser}'s FLAG</b> was Captured!";
+                reasonwin.text = reasonText;
+            }
+            else
+            {
+                string reasonText = $"\n<b>{loser}</b> had <b><color={neutralColor}>NO MOVABLE PIECES</color></b> left!";
+                reasonwin.text = reasonText;
+            }
 
             winnerstats.text = winnerText;
             loserstats.text = loserText;
