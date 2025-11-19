@@ -40,13 +40,14 @@ Some particular order to the vision of the product as well as order of how we we
 | 7.2 | Special Roles                                   | 0         | Roles Establishes |
 | 8.1  | Movement                                       | 0         | Complete General Movement of All Pieces |
 | 8.2  | Special - Movement                             | 0         | Complete Movement for Special Roles |
-| 9.1 | General Combat                                  | 2         | Few clicking Bug Problems |
+| 9.1 | General Combat                                  | 2         | Turn Transition After Attacks |
 | 9.2  | Special Effects Specific Piece Role in Combat  | 0         | Additional Powers/Restrictions for Specific Pieces in Combat |
 | 10  | Turn Handling with Revealing Pieces             | 2         | When It's Player 1's Turn, can't see rest of Player 2 pieces (Bug Handling) |
 | 11 | Gameplay Polishing                               | XX        | General Bug Fixes within Game |
 | 12 | Win Condition                                    | 1         | Bug Fix - Condition to Win the Game |
-| 13 | Game Over UI                                     | 3         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented |
-| 14 | Game Over Stats                              | 2       | Gives an Overview on who won, how many pieces each team took, and how the teams won |
+| 13.1 | Game Over UI                                   | 3         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented |
+| 13.2 | Game Over Stats                                | 2       | Gives an Overview on who won, how many pieces each team took, and how the teams won |
+| 14 | Fix Executables to Run After All Changes in Current Sprint are Made | 2       | Updating necessary things for executable and README if needed |
 
 ## Sprint Backlog (start)
 ### Sprint Goal: To Fix Ongoing Bugs, and Polishing the Overall Gameplay Experience for Players that Are to Play the Game
@@ -57,8 +58,8 @@ Some particular order to the vision of the product as well as order of how we we
 | 2.1  | Decorating of the Starting Screen              | 5 (In-progress)   | Background visual for Starting Screen |
 | 5.2  | 10x10 Gameboard  External Decor (Cam Background Sprites)  | 2 (In-progress)        | Decorative Element that the Board is Placed on |
 | 6.1 | Initialization of pieces                        | 10        | Current - Can create the piece but can't create when playing |
-| 9.1 | General Combat                                  | 2         | Few clicking Bug Problems |
-| 9.1.1 | General Combat (Bug)                          | 2         | Turn Transition After Attack |
+| 9.1 | General Combat                                  | 2         | Turn Transition After Attacks |
+| 10 | Turn Handling with Revealing Piece                          | 2         | When It's Player 1's Turn, can't see rest of Player 2 pieces (Bug Fixes) |
 | 11 | Gameplay Polishing (Includes some Bug Fixes)     | (Total: 20) (See 11.1-11.4)   | Needing Sprites, Better Transition, Enhancing Gameplay Experience for Players and Combining the Necessary Things|
 | 11.1.1 | Title Screen Revamp + Sprites                | 5        | Needing to Attach the Necessary Sprites Better Visuals |
 | 11.1.2 | Applying Mouseclick sounds                   | 2        | Finish Applying Necessary Mouse Click Sounds |
@@ -67,9 +68,9 @@ Some particular order to the vision of the product as well as order of how we we
 | 11.3.1 | Game Over Stats Polishing                    | 2        | Makes the GameOver UI Look Better |
 | 11.4   | Miscellaneous Sprites                        | 1        | Miscellaneous Sprites for Usage |
 | 12 | Win Condition                                    | 1         | Bug Fix - Condition to Win the Game |
-| 13 | Game Over UI                                     | 2         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented |
-| 14 | Game Over Stats                              | 3       | Gives an Overview on who won, how many pieces each team took, and how the teams won |
-| 15 | Fix Executables to Run After All Changes in Current Sprint are Made | 2       | Updating necessary things for executable and README if needed |
+| 13.1 | Game Over UI                                     | 2         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented |
+| 13.2 | Game Over Stats                              | 3       | Gives an Overview on who won, how many pieces each team took, and how the teams won |
+| 14 | Fix Executables to Run After All Changes in Current Sprint are Made | 2       | Updating necessary things for executable and README if needed |
 
 ## Sprint Backlog (mid-Sprint 11/12/25)
 
@@ -79,8 +80,8 @@ Some particular order to the vision of the product as well as order of how we we
 | 2.1  | Decorating of the Starting Screen              | 0   | Background visual for Starting Screen | Sam
 | 5.2  | 10x10 Gameboard  External Decor (Cam Background Sprites)  | 2 (In-progress)        | Decorative Element that the Board is Placed on | Sam
 | 6.1 | Initialization of pieces                        | 10        | Current - Can create the piece but can't create when playing |
-| 9.1 | General Combat                                  | 2         | Few clicking Bug Problems | John
-| 9.1.1 | General Combat (Bug)                          | 0         | Turn Transition After Attack | Simon
+| 9.1 | General Combat                                  | 2         | Turn Transition After Attacks | Simon
+| 10 | Turn Handling with Revealing Piece               | 0         | Hiding and Revealing of Pieces | John
 | 11 | Gameplay Polishing (Includes some Bug Fixes)     | (Total: 8)(See 11.1-11.4)    | Needing Sprites, Better Transition, Enhancing Gameplay Experience for Players and Combining the Necessary Things| Sam, Simon, Jacob, John
 | 11.1.1 | Title Screen Revamp + Sprites                | 0        | Needing to Attach the Necessary Sprites Better Visuals | Jacob
 | 11.1.2 | Applying Mouseclick sounds                   | 2        | Finish Applying Necessary Mouse Click Sounds | Jacob
@@ -89,9 +90,9 @@ Some particular order to the vision of the product as well as order of how we we
 | 11.3.1 | Game Over Stats Polishing                    | 2        | Makes the GameOver UI Look Better | Jacob, Simon
 | 11.4   | Miscellaneous Sprites                        | 1        | Miscellaneous Sprites for Usage | Sam
 | 12 | Win Condition                                    | 0         | Conditions to Win the Game Complete | Simon
-| 13 | Game Over UI                                     | 0         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented | Simon
-| 14 | Game Over Stats                                  | 0         | In addition to who won, gives an Overview how many pieces each team took, and how the teams won | Simon
-| 15 | Fix Executables to Run After All Changes in Current Sprint are Made | 2       | Updating necessary things for executable and README if needed | John, Jacob
+| 13.1 | Game Over UI                                     | 0         | Conditions of Winning Satisfied, Stopped Game | Simon
+| 13.2 | Game Over Stats                                  | 0         | In addition to who won, gives an Overview how many pieces each team took, and how the teams won | Simon
+| 14 | Fix Executables to Run After All Changes in Current Sprint are Made | 2       | Updating necessary things for executable and README if needed | John, Jacob
 
 ## Sprint Backlog (End of Sprint 11/18/25)
 
@@ -101,8 +102,8 @@ Some particular order to the vision of the product as well as order of how we we
 | 2.1  | Decorating of the Starting Screen              | 0                    | Background visual for Starting Screen | Sam
 | 5.2  | 10x10 Gameboard  External Decor (Cam Background Sprites)  | 0         | Decorative Element that the Board is Placed on | Sam
 | 6.1 | Initialization of pieces                        | 10 (Not Done) | Current - Can create the piece but can't create when playing |
-| 9.1 | General Combat                                  | 0         | Few clicking Bug Problems | John
-| 9.1.1 | General Combat (Bug)                          | 0         | Turn Transition After Attack | Simon
+| 9.1 | General Combat                                  | 0         | Turn Transition After Attacks | Simon
+| 10 | Turn Handling with Revealing Piece               | 0         | Hiding and Revealing of Pieces | John
 | 11 | Gameplay Polishing (Includes some Bug Fixes)     | (Total: 0)(See 11.1-11.4)    | Needing Sprites, Better Transition, Enhancing Gameplay Experience for Players and Combining the Necessary Things| Sam, Simon, Jacob, John
 | 11.1.1 | Title Screen Revamp + Sprites                | 0        | Necessary Sprites Better Visuals Done | Jacob
 | 11.1.2 | Applying Mouseclick sounds                   | 0        | Finished Necessary Mouse Click Sounds | Jacob
@@ -112,17 +113,17 @@ Some particular order to the vision of the product as well as order of how we we
 | 11.4   | Miscellaneous Sprites                        | 0        | Miscellaneous Sprites for Usage | Sam
 | 11.5 | Fix Executables to Run After All Changes in Current Sprint are Made | 0       | Executable | John, Jacob
 | 12 | Win Condition                                    | 0         | Conditions to Win the Game Complete | Simon
-| 13 | Game Over UI                                     | 0         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented | Simon
-| 14 | Game Over Stats                                  | 0         | In addition to who won, gives an Overview how many pieces each team took, and how the teams won | Simon
-| 15 | Fix Executables to Run After All Changes in Current Sprint are Made | 0      | Executables | John, Jacob
+| 13.1 | Game Over UI                                     | 0         | Conditions of Winning Satisfied, Stopped Game | Simon
+| 13.2 | Game Over Stats                                  | 0         | In addition to who won, gives an Overview how many pieces each team took, and how the teams won | Simon
+| 14 | Fix Executables to Run After All Changes in Current Sprint are Made | 0      | Executables | John, Jacob
 
 ## Product Backlog (End of Sprint 11/18/25)
 
 | #  | Feature                                          | Hours (0 means Done) | Notes |
 |----|--------------------------------------------------|----------------------|-------|
-| 1  | Establishment of basic rules for the game        | 0   | Complete basic set of rules |
-| 2  | Creation of the Starting Screen                  | 0   | Complete Starting Screen |
-| 2.1  | Decorating of the Starting Screen              | 0   | Background visual for Starting Screen |
+| 1  | Establishment of basic rules for the game        | 0         | Complete basic set of rules |
+| 2  | Creation of the Starting Screen                  | 0         | Complete Starting Screen |
+| 2.1  | Decorating of the Starting Screen              | 0         | Background visual for Starting Screen |
 | 3  | Visuals for the game pieces                      | 0         | Complete sprite of pieces |
 | 4  | Sound effects for the game                       | 0         | Sound effects added, Will need Some More Integration|
 | 5.1 | 10x10 Gameboard                                 | 0         | GameBoard Setup Done  |
@@ -134,12 +135,12 @@ Some particular order to the vision of the product as well as order of how we we
 | 8.2  | Special - Movement                             | 0         | Complete Movement for Special Roles |
 | 9.1 | General Combat                                  | 0         | Combat Mechanics Done |
 | 9.2  | Special Effects Specific Piece Role in Combat  | 0         | Additional Powers/Restrictions for Specific Pieces in Combat |
-| 10  | Turn Handling with Revealing Pieces             | 0         | When It's Player 1's Turn, can't see rest of Player 2 pieces (Bug Handling) |
+| 10  | Turn Handling with Revealing Pieces             | 0         | When It's Player 1's Turn, can't see rest of Player 2 pieces |
 | 11 | Gameplay Polishing                               | 0         | General Bug Fixes within Game |
-| 12 | Win Condition                                    | 0         | Bug Fix - Condition to Win the Game |
-| 13 | Game Over UI                                     | 0         | Flag Win Condition Complete, Movable Pieces Win Condition to be Implemented |
-| 14 | Game Over Stats                                  | 0         | Gives an Overview on who won, how many pieces each team took, and how the teams won |
-| 15 | Updating Executable                              | 0         | Executable for players to play |
+| 12 | Win Condition                                    | 0         | Conditions to Win the Game |
+| 13.1 | Game Over UI                                   | 0         | Conditions of Winning Satisfied, Stopped Game |
+| 13.2 | Game Over Stats                                | 0         | Gives an Overview on who won, how many pieces each team took, and how the teams won |
+| 14 | Updating Executable                              | 0         | Executable for players to play |
 
 ## Burndown Chart
 ![Burndown Chart CS512 Sprint 4](./CS512_Sprint_4_Burndown.png)
@@ -158,9 +159,8 @@ Prefabs corrected, layers fixed, and visuals unified.
 Excess time allocated allowed for necessary things to be thoroughly polished.
 
 ### What Could Be Improved
-Sprint hours started at 49. - Because polishing required revisiting, some excess time was allocated to fall back on.
-Additionally, Piece Initialization wasn't worked on within this sprint due to lack of time.
-(Reflected in the Burndown Chart)
+Sprint hours started at 49 where because polishing required revisiting some parts, some excess time was allocated to fall back on.
+Because of this, Piece Initialization wasn't worked on within this sprint due to lack of time.
 
 Some bugs that needed to be fixed first delayed few parts of polishing.
 
