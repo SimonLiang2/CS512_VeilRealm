@@ -24,6 +24,9 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private int gridSizeRows = 10;
     [SerializeField] private int gridSizeCols = 10;
 
+    public int GridRows => gridSizeRows;
+    public int GridCols => gridSizeCols;
+
 
     [SerializeField] public bool redMove = true;
     [SerializeField] public bool blueMove = false;
@@ -70,6 +73,11 @@ public class BoardManager : MonoBehaviour
 
     private PieceController selectedPiece;
 
+    public bool IsWallAt(int x, int y)
+    {
+        return wallSet.Contains(new Vector2Int(x, y));
+    }
+
     void Awake()
     {
         // x first, y second
@@ -110,7 +118,7 @@ public class BoardManager : MonoBehaviour
         return true;
     }
 
-    private void UpdatePieceVisibility()
+    public void UpdatePieceVisibility()
     {
         foreach (var pieceObj in grid)
         {
@@ -383,8 +391,13 @@ public class BoardManager : MonoBehaviour
             Debug.LogError($"RegisterPiece out of bounds: {x},{y}");
             return;
         }
+
         grid[x, y] = piece.gameObject;
+
+        // Ensure visibility is correct whenever a piece is placed/registered.
+        UpdatePieceVisibility();
     }
+
 
     private void ToggleTurnAfterAttack(Team attacker)
     {
